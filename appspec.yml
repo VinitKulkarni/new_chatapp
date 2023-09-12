@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: / 
-    destination: /home/ubuntu/new_chatapp
+    destination: /etc/ubuntu/new_chatapp
 hooks:
   ApplicationStop:
     - location: scripts/stop_server.sh
