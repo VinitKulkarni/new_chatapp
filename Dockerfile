@@ -8,7 +8,7 @@ RUN apt-get install -y python3 python3-pip
 RUN mkdir /new_chatapp
 
 #git cloned reporsitory in chat_app move it to container
-COPY chat_app /new_chatapp
+COPY . /new_chatapp
 
 #requirement file present here
 WORKDIR /new_chatapp
