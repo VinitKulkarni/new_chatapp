@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: vinitkulkarni/backend-image
+          imagePullPolicy: Always
+          ports:
+            - name: tcp
+              containerPort: 8000
+          resources:
+              limits:
+                cpu: 500m
+              requests:
+                cpu: 200m
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  type: ClusterIP
+  ports:
+    - name: backend-service
+      port: 8000
+      targetPort: 8000
